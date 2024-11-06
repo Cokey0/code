@@ -30,18 +30,16 @@ public class MAIN {
     private int[] arr;
     private int length;
 
-    // 构造函数初始化 
+    // 构造函数初始化
     public MAIN(int length) {
         this.length = length;
         // arr = new int[length];
         Scanner scanner = new Scanner(System.in);
         System.out.println("******************************************************************");
-
         System.out.println("选择数组获取方式: ");
         System.out.println("1. 随机生成唯一数组");
         System.out.println("2. 手动输入数组");
         System.out.println("******************************************************************");
-
         int method = scanner.nextInt();
         if (method == 1) {
             arr = uniqueRandomArray(length);
@@ -53,7 +51,6 @@ public class MAIN {
 
     }
 
-   
     // 生成唯一随机数组
     public int[] uniqueRandomArray(int arrayLength) {
         Random random = new Random();
@@ -181,6 +178,7 @@ public class MAIN {
 
     // 顺序检索
     public void search(int[] array, int target) {
+        System.out.println("当前数组"+Arrays.toString(array));
         int count = 1;
         int end = 2;
         for (int i = 0; i < array.length; i++, count++, end++) {
@@ -197,7 +195,10 @@ public class MAIN {
 
     // 二分检索
     public void binarySearch(int[] array, int target) {
-        int[] orderedArray = Arrays.copyOf(array, array.length);
+        int[] tempArray = Arrays.copyOf(array, array.length);
+        System.out.println("原始数组"+Arrays.toString(tempArray));
+        int[] orderedArray = order(tempArray);
+        System.out.println("当前数组"+Arrays.toString(orderedArray));
 
         int low = 0;
         int high = orderedArray.length - 1;
@@ -235,7 +236,9 @@ public class MAIN {
 
     // 三分检索
     public void ternarySearch(int[] array, int target) {
-        int[]orderedArray=order(array);
+        int[] tempArray = Arrays.copyOf(array, array.length);
+        System.out.println("当前数组"+Arrays.toString(tempArray));
+        int[] orderedArray = order(tempArray);
         int low = 0;
         int high = orderedArray.length - 1;
         int comparisonCount = 0;
@@ -281,15 +284,13 @@ public class MAIN {
         System.out.println("******************************************************************");
         System.out.println("请输入数组长度：");
         System.out.println("******************************************************************");
-
         MAIN main = new MAIN(scanner.nextInt());
         boolean running = true;
         int index;
+
         while (running) {
             System.out.println("******************************************************************");
-
             System.out.println("当前数组：" + Arrays.toString(main.arr));
-            System.out.println(Arrays.toString(main.arr));
             System.out.println("1. 判断数组状态");
             System.out.println("2. 顺序检索");
             System.out.println("3. 二分检索");
@@ -299,7 +300,6 @@ public class MAIN {
             System.out.println("******************************************************************");
 
             System.out.println("选择功能: ");
-
 
             try {
                 index = scanner.nextInt();
@@ -316,7 +316,10 @@ public class MAIN {
                     main.checkArrayOrder(main.arr);
                     break;
                 case 2:// 顺序检索
-                    System.out.print("请输入要查找的元素: ");
+                    System.out.println("请输入要查找的元素: ");
+                    System.out.println("******************************************************************");
+                    System.out.println("待查元素：");
+
                     main.search(main.arr, scanner.nextInt());
                     break;
                 case 3:// 二分检索
