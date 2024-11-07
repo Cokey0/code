@@ -69,30 +69,15 @@ private int[] array;
                 // 当按钮被点击时，获取数组并进行顺序检索
                 String tempSearch = JOptionPane.showInputDialog(frame, "请输入要检索的数");
                 int searchNum = Integer.parseInt(tempSearch);
-
                 String inputText = textField.getText();
                 int[] arr = new int[inputText.length()];
+                
                 for (int i = 0; i < inputText.length(); i++) {
                     arr[i] = Integer.parseInt(inputText.charAt(i) + "");
                 }
-                int[] result = new int[arr.length];
-                int index = 0;
-                for (int i = 0; i < arr.length; i++) {
-                    for (int j = i + 1; j < arr.length; j++) {
-                        if (arr[i] > arr[j]) {
-                            int temp = arr[i];
-                            arr[i] = arr[j];
-                            arr[j] = temp;
-                        }
-                    }
-                }
-                for (int i = 0; i < arr.length; i++) {
-                    if (arr[i] != arr[0]) {
-                        result[index] = arr[i];
-                        index++;
-                    }
-                }
-                JOptionPane.showMessageDialog(frame, "顺序检索结果: " + result);
+                
+                JOptionPane.showMessageDialog(frame, "数组"+Arrays.toString(arr));
+                textField2.setText(Arrays.toString(arr))
             }
         });
 
